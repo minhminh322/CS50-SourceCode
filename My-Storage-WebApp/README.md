@@ -10,12 +10,7 @@ This is a web application that allows users to upload and display images in a ga
 
 ## Installation
 
-1. **Clone the repository:**
-
-   ```sh
-   git clone https://github.com/yourusername/gallery-app.git
-   cd gallery-app
-   ```
+1. **Clone the repository**
 
 2. **Set up a virtual environment:**
 
