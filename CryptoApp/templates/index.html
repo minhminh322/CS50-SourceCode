@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Crypto Dashboard</h1>
+    <form action="/search" method="get">
+        <input type="text" name="coin_name" placeholder="Enter coin id (e.g., bitcoin)">
+        <button type="submit">Search</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>Current Price</th>
+                <th>Market Cap</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for crypto in crypto_data %}
+            <tr>
+                <td><img src="{{ crypto['image'] }}" alt="{{ crypto['name'] }}" width="20" height="20"> {{ crypto['name'] }}</td>
+                <td>{{ crypto['symbol'].upper() }}</td>
+                <td>${{ crypto['current_price'] }}</td>
+                <td>${{ crypto['market_cap'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

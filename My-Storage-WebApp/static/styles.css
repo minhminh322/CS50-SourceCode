@@ -1,0 +1,188 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.header {
+  background-color: #007bff;
+}
+
+.header img {
+  height: 60px;
+}
+
+.navbar-nav .nav-item .nav-link {
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-item .nav-link:hover,
+.navbar-nav .nav-item .nav-link:focus {
+  color: #007bff;
+  /* background-color: white; */
+  border-radius: 5px;
+}
+
+.btn-light {
+  background-color: white;
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.btn-light:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.like-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.like-button:hover {
+  background-color: #0056b3;
+}
+
+.like-button.liked {
+  background-color: #dc3545;
+}
+
+textarea#description {
+  width: calc(100% - 24px);
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
+}
+
+textarea#description:focus {
+  border-color: #3498db;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(52, 152, 219, 0.5);
+  outline: none;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="file"] {
+  width: calc(100% - 24px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+form input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+}
+
+.gallery-item {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  padding: 10px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.gallery-item h3 {
+  margin: 10px 0 5px;
+  font-size: 1.1em;
+}
+
+.gallery-item p {
+  color: #777;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+/* CSS for the Like button */
+.like-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.like-button:hover {
+  background-color: #0056b3;
+}
+
+.liked {
+  background-color: #007bff;
+  color: white;
+}
+.spinner {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  .auth-buttons {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+}

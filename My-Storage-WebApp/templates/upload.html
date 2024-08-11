@@ -1,0 +1,94 @@
+{% extends "layout.html" %} {% block title %} Upload {% endblock %} {% block
+main %}
+<div class="container mt-4">
+  {% if session.get("user_id") %}
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">Upload an Image</h2>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Name"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="description"
+            placeholder="Description"
+          ></textarea>
+        </div>
+        <div class="mb-3">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="autoGenerateButton"
+          >
+            Auto-Generate Description
+          </button>
+        </div>
+        <div class="mb-3">
+          <label for="imageInput" class="form-label">Select Image</label>
+          <input
+            type="file"
+            class="form-control"
+            id="imageInput"
+            name="image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Upload Image</button>
+      </form>
+      <div id="loading" class="mt-3 text-center" style="display: none">
+        <p>Analyzing image...</p>
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+<script>
+  document.getElementById("autoGenerateButton").onclick = function () {
+    var imageInput = document.getElementById("imageInput");
+    if (imageInput.files.length === 0) {
+      alert("Please select an image file first.");
+      return;
+    }
+
+    var formData = new FormData();
+    formData.append("image", imageInput.files[0]);
+    document.getElementById("loading").style.display = "block";
+
+    fetch("/auto-generate-description", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        document.getElementById("loading").style.display = "none";
+        console.log(data);
+        if (data.success) {
+          document.getElementById("description").value = data.description;
+        } else {
+          alert(data.error);
+        }
+      })
+      .catch((error) => {
+        document.getElementById("loading").style.display = "none";
+        alert("Error: " + error.message);
+      });
+  };
+</script>
+
+{% endblock %}

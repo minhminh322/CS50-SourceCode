@@ -1,0 +1,71 @@
+{% extends "layout.html" %} {% block title %} Home {% endblock %} {% block main
+%}
+
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for image in images %}
+    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+      <div class="card" style="width: 18rem">
+        <img
+          src="{{ url_for('static', filename='uploads/' ~ image['filename']) }}"
+          class="card-img-top"
+          alt="{{ image['name'] }}"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ image['name'] }}</h5>
+          <div class="card-text">{{ image['description'] }}</div>
+          {% if image['loved'] %}
+          <i
+            class="fa fa-heart love-icon"
+            data-image-id="{{ image['id'] }}"
+            style="cursor: pointer; color: red"
+          ></i>
+          {% else %}
+          <i
+            class="fa fa-heart love-icon"
+            data-image-id="{{ image['id'] }}"
+            style="cursor: pointer; color: grey"
+          ></i>
+          {% endif %}
+          <div class="timestamp">{{ image['time_ago'] }}</div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+  // JavaScript to handle Love button
+  document.addEventListener("DOMContentLoaded", function () {
+    const loveIcons = document.querySelectorAll(".love-icon");
+    loveIcons.forEach((icon) => {
+      icon.addEventListener("click", function () {
+        const imageId = this.getAttribute("data-image-id");
+        const isLoved = this.style.color === "red";
+        this.style.color = isLoved ? "grey" : "red";
+
+        // Send an request to update the data
+        fetch("/love", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ image_id: imageId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (!data.success) {
+              // Handle error
+              console.error("Error:", data.error);
+              this.style.color = isLoved ? "red" : "grey"; // Revert color change on error
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            this.style.color = isLoved ? "red" : "grey"; // Revert color change on error
+          });
+      });
+    });
+  });
+</script>
+{% endblock %}

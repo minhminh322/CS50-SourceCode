@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ coin_detail['name'] }} Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>{{ coin_detail['name'] }} ({{ coin_detail['symbol'].upper() }})</h1>
+    <img src="{{ coin_detail['image']['large'] }}" alt="{{ coin_detail['name'] }}" width="100">
+    <p>Current Price: ${{ coin_detail['market_data']['current_price']['usd'] }}</p>
+    <p>Market Cap: ${{ coin_detail['market_data']['market_cap']['usd'] }}</p>
+    <p>24h High: ${{ coin_detail['market_data']['high_24h']['usd'] }}</p>
+    <p>24h Low: ${{ coin_detail['market_data']['low_24h']['usd'] }}</p>
+    <a href="/">Back to Dashboard</a>
+</body>
+</html>
