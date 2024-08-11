@@ -106,6 +106,22 @@ This is a web application that allows users to upload and display images in a ga
 - Passwords are hashed using Werkzeug's security module.
 - Session management with Flask's built-in session handling.
 
-## License
+## API Integration (OPTIONAL for Auto-Generated Image Descriptions)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Obtaining the OPENAI_KEY
+
+To use the OpenAI API, you need to obtain an API key. Follow these steps to get your `OPENAI_KEY`:
+
+1. Go to the [OpenAI website](https://www.openai.com/).
+2. Sign up for an account if you don't already have one.
+3. Once logged in, navigate to the API section.
+4. Create a new API key.
+5. Copy the generated API key.
+
+### Setting Up Environment Variables
+
+After obtaining your `OPENAI_KEY`, you need to set it as an environment variable. You can do this by adding the following line to your `.env` file:
+
+```sh
+OPENAI_KEY=your_openai_key_here
+```

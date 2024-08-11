@@ -125,5 +125,7 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-gallery.db
+# Ignore the .DS_Store file in any directory
 .DS_Store
+
+gallery.db
